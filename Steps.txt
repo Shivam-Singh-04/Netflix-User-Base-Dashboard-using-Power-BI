@@ -1,0 +1,20 @@
+Steps:
+
+1) Creating Database & Importing data: Open PostgreSql. Create a database named 'netflix'. Import the csv file 'Netflix userbase' as a table named 'netflix_userbase'.
+Check if the data is imported or not by SELECT*FROM netflix_userbase method to view all the columns and rows. Your database is ready.
+
+2) Integrating & importing the data into Power BI: Start Microsoft Power BI. Select get data and choose PostgreSQL. In the dialog box, enter 'localhost:5432' as server (In your case, it may vary.
+However you can check the same by right clicking on the database and select properties. Navigate to the connection tab, the host name, port number and the username is visible). Then there are two ways
+to import the data; Import and Direct Query. The key differences between DirectQuery and Import in Power BI are: Data storage and processing: The Import method stores the data within the Power BI file,
+while DirectQuery retrieves the data directly from the data source in real time.
+
+3) Process/Transform the data as per need: First of all we need to check if the data has any null values or not. There are two ways to do it: Select the filter dropdown icon and check if there any blank
+values or not. If any we can delete all the rows by selecting it. The other way to do the same is navigate to view in the toolbar and checking the column quality option. It shows null values of all the
+columns and also the errors if any. The monthly revenue amount for all the plans are very small to be displayed. So to make it authentic, we added a new column named 'MonthlyRevenue' which contained
+prices as 199,499 and 1199 of basic, standard and premium plans respectively. Now, we require user retention to be diaplayed in terms of months, so we make a new calculated
+column as UserRetenton = ((Date.Year([last_payment_date])-Date.Year([join_date]))*12) + Date.Month([last_payment_date]) - Date.Month([join_date]). We formed a new column 'Age_Group' by considering the ages
+between 25-35 as Teenager, 35-50 as Adult and anyone above it as Senior citizen.
+
+4) Dashboard Creation: By the data we could design the two main KPI's i.e. users count and revenue for the same time period. Then we went on to make stacked column charts, pie/donut charts and world map
+chart to show users by subscription type, retention in months, age group, device, country and gender. Also we have included slicers to analyze the data year and quarter wise and the Netflix logo clears 
+all the slicers.
